@@ -14,69 +14,62 @@
                 
                 </div>
                 <div class="card-body">
-                  <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form action="{{route('permission-save')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  {{ csrf_field() }}
                   <div class="form-group row">
-                      <label class="col-md-3 col-form-label">T.C Kimlik No</label>
+                      <label class="col-md-3 col-form-label" for="employee_id">Personel</label>
                       <div class="col-md-9">
-                      <input type="text" id="tc" name="tc" class="form-control" placeholder="T.C Kimlik No">
+                        <select id="employee_id" name="employee_id" class="form-control">
+                          <option value="0">Seçiniz</option>
+                          @foreach($employees as $employee)
+                          <option value="{{$employee->id}}">{{$employee->name}}</option>
+                          @endforeach
+                        </select>
                       </div>
                     </div>
+                   
                     <div class="form-group row">
-                      <label class="col-md-3 col-form-label">Ad</label>
+                      <label class="col-md-3 col-form-label" for="start_date">İzin Başlama Tarihi</label>
                       <div class="col-md-9">
-                      <input type="text" id="ad" name="ad" class="form-control" placeholder="Ad">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="soyad">Soyad</label>
-                      <div class="col-md-9">
-                        <input type="text" id="soyad" name="soyad" class="form-control" placeholder="Soyad">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="email-input">Branş ve Görevi</label>
-                      <div class="col-md-9">
-                        <input type="email" id="email-input" name="email-input" class="form-control" placeholder="Email">
-                      </div>
-                    </div>
-                
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="date">İzin Başlama Tarihi</label>
-                      <div class="col-md-9">
-                        <input type="date" id="date" name="date"  class="form-control" placeholder="İşe Giriş Tarihi"></input>
+                        <input type="date" id="start_date" name="start_date"  class="form-control" placeholder="İşe Giriş Tarihi">
                       </div>
                     </div>
             
                     <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="date">İzin Sonrası İşbaşı Tarihi</label>
+                      <label class="col-md-3 col-form-label" for="end_date">İzin Sonrası İşbaşı Tarihi</label>
                       <div class="col-md-9">
-                        <input  type="date" id="date" name="date2"  class="form-control" placeholder="İşten Ayrılma Tarihi"></input>
+                        <input  type="date" id="end_date" name="end_date"  class="form-control" value="00.00.0000">
                       </div>
                     </div>
 
                     
                     <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="date">İzinli Olacağı Gün Sayısı</label>
+                      <label class="col-md-3 col-form-label" for="day">İzinli Olacağı Gün Sayısı</label>
                       <div class="col-md-9">
-                        <input  type="text id="date" name="date2"  class="form-control" placeholder="İzinli Olacağı Gün Sayısı"></input>
+                        <input  type="text" id="day" name="day"  class="form-control" placeholder="İzinli Olacağı Gün Sayısı">
                       </div>
                     </div>
 
                     
                     <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="textarea-input">İzin Nedeni</label>
+                      <label class="col-md-3 col-form-label" for='resaon'>İzin Nedeni</label>
                       <div class="col-md-9">
-                        <textarea id="cause" name="cause" rows="9" class="form-control" placeholder="Açıklama.."></textarea>
+                        <textarea id='resaon' name='resaon' rows="9" class="form-control" placeholder="Açıklama.."></textarea>
                       </div>
                     </div>
               </div>
             </div>
           
-            <div class="card">
-            <div class="card-header">
-                <div class="card-body left">
-                  <a href= "{{route('overtime-info-add')}}"><button type="button" class="btn btn-primary pull-right"><i class="fa fa-angle-double-right"></i>&nbsp;İleri</button></a>
+            <div class="box-footer pull-right">
+                <div class="form-group">
+                    <div class="col-md-8 ">
+                        <button type="submit" class="btn btn-primary ">
+                            Kaydet
+                        </button>
+                    </div>
                 </div>
+              </div>
+            </form>
 </div>
 </div>
 

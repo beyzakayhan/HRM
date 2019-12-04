@@ -11,7 +11,7 @@
                 <a class="nav-link" href="{{route('personal-info-add')}}"><i class="icon-puzzle"></i> Personel Ekle</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{route('personal-info')}}"><i class="icon-puzzle"></i> Kişisel Bilgiler</a>
+                <a class="nav-link" href="{{route('personal-info')}}"><i class="icon-puzzle"></i> Personel Bilgileri</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{route('overtime-info')}}"><i class="icon-puzzle"></i>Mesai Bilgileri</a>
@@ -43,6 +43,9 @@
               </li>
           </li>
           </ul>
+          <li class="nav-item">
+          <a class="nav-link" href="{{route('salary-info')}}"><i class="icon-cursor-move"></i>Ödeme Bilgisi</a>
+            </li>
           <li class="nav-item">
                 <a class="nav-link" href="plugins-draggable-cards.html"><i class="icon-cursor-move"></i>Duyurular</a>
               </li>

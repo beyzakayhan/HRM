@@ -30,16 +30,23 @@
                     <th>Resim</th>
                     <th>Ad-Soyad</th>
                     <th>Departman</th>
-                    <th>Bölüm</th>
-                    <th>Görev</th>
-                    <th>Çalışma Süresi</th>
+                    <th>Branş</th>
+                    <th>Maaş</th>
                     <th>Durum</th>
-                    <th></th>
                     
                   </tr>
                 </thead>
                 <tbody>
-                
+                  @foreach ($employees as $employee)  
+                  <td>$employee->photo</td>
+                  <td>$employee->name</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    @if($employee->quit==null)
+                     "aktif"
+                  </td>
+                  @endforeach
                 </tbody>
               </table>
             </div>

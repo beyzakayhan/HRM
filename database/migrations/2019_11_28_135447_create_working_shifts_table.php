@@ -18,8 +18,8 @@ class CreateWorkingShiftsTable extends Migration
             $table->unsignedBigInteger('department_id');
             $table->string('working_days');
             $table->string('holiday_days');
-            $table->date('check-in_time');
-            $table->date('check-out_time');
+            $table->string('check-in_time');
+            $table->string('check-out_time');
 
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();

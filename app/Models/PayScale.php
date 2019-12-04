@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeWorkingShift extends Model
+class PayScale extends Model
 {
-    protected $table="working_shifts";
+    protected $table="salary_informations";
     protected $guarded=[];
 }

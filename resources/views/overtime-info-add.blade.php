@@ -15,27 +15,16 @@
                 </div>
               
                 <div class="card-body">
-                  <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-
+                <form action="{{route('overtime-save')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                   {{ csrf_field() }}
                   <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="select2">Departman</label>
+                      <label class="col-md-3 col-form-label" for="department_id">Departman</label>
                       <div class="col-md-9">
-                        <select id="select2" name="select2" class="form-control">
+                        <select id="department_id" name="department_id" class="form-control">
                           <option value="0">Seçiniz</option>
-                          <option value="1">Option #1</option>
-                          <option value="2">Option #2</option>
-                          <option value="3">Option #3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label" for="select2">Görev</label>
-                      <div class="col-md-9">
-                        <select id="select3" name="select3" class="form-control">
-                          <option value="0">Seçiniz</option>
-                          <option value="1">Option #1</option>
-                          <option value="2">Option #2</option>
-                          <option value="3">Option #3</option>
+                          @foreach($employeeDepartment as $department)
+                          <option value="{{$department->id}}">{{$department->name}}</option>
+                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -44,7 +33,7 @@
                           <label>Mesai Günleri</label>
                       </div>
                       <div class="col-md-9">
-                          <select id="select2-2" class="form-control select2-multiple" multiple="">
+                          <select name="working_days[]" id="select2-2" class="form-control select2-multiple" multiple="">
                             <option>Pazartesi</option>
                             <option selected="">Salı</option>
                             <option>Çarşamba</option>
@@ -61,7 +50,7 @@
                           <label>Tatil Günleri</label>
                       </div>
                       <div class="col-md-9">
-                          <select id="select2-3" class="form-control select2-multiple" multiple>
+                          <select name="holiday_days[]" id="select2-3" class="form-control select2-multiple" multiple>
                           <option>Pazartesi</option>
                             <option selected="">Salı</option>
                             <option>Çarşamba</option>
@@ -75,20 +64,24 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Giriş Saati</label>
                       <div class="col-md-9">
-                      <input type="time" id="time" name="time" class="form-control">
+                      <input type="time" id="check_in" name="check_in" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Çıkış Saati</label>
                       <div class="col-md-9">
-                      <input type="time" id="time2" name="time2" class="form-control">
+                      <input type="time" id="check_out" name="check_out" class="form-control">
                       </div>
                     </div>
-            <div class="card">
-            <div class="card-header">
-                <div class="card-body left">
-                  <a href= "{{route('salary-info-add')}}"><button type="button" class="btn btn-primary pull-right"><i class="fa fa-angle-double-right"></i>&nbsp;İleri</button></a>
-                </div>
+                    <div class="box-footer pull-right">
+                        <div class="form-group">
+                            <div class="col-md-8 ">
+                                <button type="submit" class="btn btn-primary ">
+                                    Kaydet
+                                </button>
+                            </div>
+                        </div>
+                      </div>
 </div>
 </div>
 

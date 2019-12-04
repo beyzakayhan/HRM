@@ -11,9 +11,9 @@
 |
 */
 Route::get('/', 'AnasayfaController@index')->name('anasayfa');
-Route::get('/personal-info', 'EmployeeController@index')->name('personal-info');
-Route::get('/personal-info-add', 'EmployeeController@create')->name('personal-info-add');
-Route::get('/overtime-info-add', 'PersonalInfoController@overtimeAdd')->name('overtime-info-add');
+
+
+
 Route::get('/salary-info-add', 'PersonalInfoController@salaryAdd')->name('salary-info-add');
 Route::get('/salary-info', 'PersonalInfoController@salaryInfo')->name('salary-info');
 Route::get('/overtime-info', 'PersonalInfoController@overtimeInfo')->name('overtime-info');
@@ -27,4 +27,22 @@ Route::get('designation-add', 'DesignationController@create')->name('designation
 Route::post('designation-save', 'DesignationController@save')->name('designation-save');
 Route::get('designation', 'DesignationController@getDesignation')->name('designations');
 
-Route::get('/permission-form', 'PermissionController@permissionForm')->name('permission-form');
+Route::get('employee-info', 'EmployeeController@index')->name('personal-info');
+Route::get('employee-add', 'EmployeeController@create')->name('personal-info-add');
+Route::post('employee-save', 'EmployeeController@save')->name('personal-save');
+
+Route::get('workingshift-info', 'EmployeeWorkingShiftController@index')->name('overtime-info');
+Route::get('workingshift-add', 'EmployeeWorkingShiftController@create')->name('overtime-info-add');
+Route::post('workingshift-save', 'EmployeeWorkingShiftController@save')->name('overtime-save');
+
+
+Route::get('permission-info', 'EmployeeAttendanceController@index')->name('permission-list');
+Route::get('permission-add', 'EmployeeAttendanceController@create')->name('permission-form');
+Route::post('permission-save', 'EmployeeAttendanceController@save')->name('permission-save');
+
+
+
+Route::get('payment-info', 'EmployeePayScaleController@create')->name('salary-info');
+Route::get('payment-info-add', 'EmployeePayScaleController@save')->name('salary-info-add');
+Route::post('payment-filter', 'EmployeePayScaleController@filter')->name('filter');
+

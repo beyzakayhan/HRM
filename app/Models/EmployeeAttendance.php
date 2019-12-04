@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeWorkingShift extends Model
+class EmployeeAttendance extends Model
 {
-    protected $table="working_shifts";
+    protected $table="attendances";
     protected $guarded=[];
 }

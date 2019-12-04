@@ -16,7 +16,7 @@ class CreateSalaryInformationsTable extends Migration
         Schema::create('salary_informations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('employee_id');
-            $table->date('month');
+            $table->string('month');
             $table->boolean('payment_info')->default(false);
 
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');

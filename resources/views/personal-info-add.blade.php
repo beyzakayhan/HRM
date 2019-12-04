@@ -13,7 +13,8 @@
                   <strong>Yeni Personel</strong>
                 </div>
                 <div class="card-body">
-                  <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <form action="{{route('personal-save')}}"  method="post" enctype="multipart/form-data" class="form-horizontal">
+                    {{ csrf_field() }}
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Ad Soyad</label>
                       <div class="col-md-9">
@@ -78,7 +79,7 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="designation">Görev</label>
                       <div class="col-md-9">
-                        <select id="designation" name="designation" class="form-control">
+                        <select id="designation" name="employee_designation_id" class="form-control">
                         
                         </select>
                       </div>
@@ -150,7 +151,7 @@
               success:function(res){      
                  $('#designation').append('<option>Select</option>');
                  $.each(res,function(key,value){
-                  $("#designation").append('<option value="'+key+'">'+value.name+'</option>');
+                  $("#designation").append('<option value="'+value.id+'">'+value.name+'</option>');
                  });
               }
              

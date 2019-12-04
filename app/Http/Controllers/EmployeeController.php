@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -19,8 +20,10 @@ class EmployeeController extends Controller
         
         return view('personal-info-add',compact('employeeDepartments'));
     }
+    
     public function save(Request $request)
     {
+    
         if ($request->hasFile('photo')) {
             if ($request->file('photo')->isValid()) {
                 $avatarName = $request->file('photo');
@@ -32,9 +35,10 @@ class EmployeeController extends Controller
             $avatar=null;
 
         }
+     
          
-        Employee:create([
-            'employee_department_id'=>$request->employee_department_id,
+        Employee::create([
+
             'employee_designation_id'=>$request->employee_designation_id,
             'name'=>$request->name,
             'birthday'=>$request->birthday,
@@ -44,8 +48,10 @@ class EmployeeController extends Controller
             'addres'=>$request->addres,
             'join'=>$request->join,
             'quit'=>$request->quit,
-            'salary'=>$request->salary,
+            'salary_amount'=>$request->salary,
             'photo'=>$avatar
         ]);
+
+        return('personal-info');
     }
 }

@@ -26,7 +26,16 @@ class DesignationController extends Controller
     {
         Designation::create([
            'department_id'=>$request->department_id,
-            'name'=>$request->name
+            'name'=>$request->name,
+            'birthday'=>$request->birthday,
+            'gender'=>$request->gender,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'addres'=>$request->addres,
+            'join'=>$request->join,
+            'quit'=>$request->quit,
+            'salary'=>$request->salary,
+            'avatar'=>$request->avatar
         ]);
 
 
