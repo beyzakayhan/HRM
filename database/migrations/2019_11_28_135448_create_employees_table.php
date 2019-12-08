@@ -15,7 +15,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('employee_designation_id');
+            $table->unsignedBigInteger('designation_id');
             $table->string('name');
             $table->date('birthday');
             $table->string('gender');
@@ -27,7 +27,7 @@ class CreateEmployeesTable extends Migration
             $table->decimal('salary_amount',8,2);
             $table->string('photo',50);
 
-            $table->foreign('employee_designation_id')->references('id')->on('designations')->onDelete('cascade');
+            $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');
 
             $table->timestamps();
         });

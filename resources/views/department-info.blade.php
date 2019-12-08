@@ -5,10 +5,10 @@
 
 <div class="animated fadeIn">
 <div class="card">
-                <div class="card-header">
+               <div class="card-header">
                   <strong>Yeni Departman Ekle</strong>
                 </div>
-                <div class="card-body">
+                <div  class="card-body">
                   <a href= "{{route('department-add')}}"><button type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Ekle</button></a>
                 </div>
               </div>
@@ -28,14 +28,25 @@
                 <thead>
                   <tr>
                     <th>Departman İsmi</th>
-                    <th>Açıklama</th>              
+                    <th>Açıklama</th>   
+                    <th>Düzenle</th>           
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach($employeeDepartments as $departments)
+                    @foreach($employeeDepartments as $employeeDepartment)
                       <tr>
-                      <td>{{$departments->name}}</td>
-                      <td>{{$departments->description}}</td>
+                      <td>{{$employeeDepartment->name}}</td>
+                      <td>{{$employeeDepartment->description}}</td>
+      
+                          <td style="width: 150px">
+                              <a href="{{route('department-edit', $employeeDepartment->id)}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Düzenle">
+                                  <span class="fa fa-pencil"></span>
+                              </a>
+                              <a href="{{route('department-remove', $employeeDepartment->id)}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
+                                  <span class="fa fa-trash"></span>
+                              </a>
+                          </td>
+                    
                       </tr>
                       @endforeach
                 </tbody>

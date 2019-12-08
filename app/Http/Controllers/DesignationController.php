@@ -19,7 +19,8 @@ class DesignationController extends Controller
     public function create()
     {
         $employeeDepartments=Department::all();
-        return view('designation-add',compact('employeeDepartments'));
+        $designation=new Designation();
+        return view('designation-add',compact('employeeDepartments','designation'));
     }
 
     public function save(Request $request)
@@ -27,15 +28,6 @@ class DesignationController extends Controller
         Designation::create([
            'department_id'=>$request->department_id,
             'name'=>$request->name,
-            'birthday'=>$request->birthday,
-            'gender'=>$request->gender,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'addres'=>$request->addres,
-            'join'=>$request->join,
-            'quit'=>$request->quit,
-            'salary'=>$request->salary,
-            'avatar'=>$request->avatar
         ]);
 
 
@@ -48,5 +40,29 @@ class DesignationController extends Controller
         return response()->json($designation);
                      
     }
+    
+    public function edit($id=0){
 
+        if ($id > 0) {
+            $designation = Designation::where('id', $id)->firstOrFail();
+            return view('designation-add', compact('designation'));
+        }
+    }
+
+    public function update($id=0){
+        $data = request()->all();
+        
+        if ($id > 0) {
+            $employeeDesignation = Designation::where('id', $id)->firstOrFail();
+            $employeeDesignation->update($data);
+        
+
+        }
+        return redirect('designation-info');
+    }
+
+    public function remove($id=0){
+        Designation::destroy($id);
+        return redirect('designation-info');
+    }
 }

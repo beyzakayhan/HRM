@@ -13,21 +13,28 @@
               <table class="table table-striped table-bordered datatable">
                 <thead>
                   <tr>
-                     <th>T.C Kimlik No</th>
-                    <th>Ad</th>
-                    <th>Soyad</th>
+                    <th>Ad-Soyad</th>
+                    <th>Departman</th>
                     <th>Branş ve Görevi</th>
-                    <th>Tatil Günleri</th>
-                    <th>ikametgah Adresi</th>
                     <th>İzin Başlama Tarihi</th>
+                    <th>İzin Bitiş Tarihi</th>
                     <th>İzinli Olacağı Gün Sayısı</th>
                     <th>İzin Nedeni</th>
-                    <th>Yönetici Onayı</th>
+                  
                   </tr>
                 </thead>
                 <tbody>
-                
-                </tbody>
+                   @foreach($attendances as $attendance)
+                   <tr>
+                   <td>{{$attendance->employee->name}}</td>
+                   <td>{{$attendance->employee->designation->department->name}}</td>
+                   <td>{{$attendance->employee->designation->name}}</td>
+                   <td>{{$attendance->start_date}}</td>
+                   <td>{{$attendance->end_date}}</td>
+                   <td>{{$attendance->day}}</td>
+                   <td>{{$attendance->resaon}}</td>
+                   @endforeach
+                  </tr>
               </table>
             </div>
           </div>

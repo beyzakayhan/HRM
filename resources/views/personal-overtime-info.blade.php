@@ -14,7 +14,6 @@
                 <thead>
                   <tr>
                     <th>Adı</th>
-                    <th>Soyadı</th>
                     <th>Departman</th>
                     <th>Görev Tanımı</th>
                     <th>Mesai Günleri</th>
@@ -24,7 +23,18 @@
                   </tr>
                 </thead>
                 <tbody>
-                
+               
+                   @foreach ($employees as $employee)
+                    <tr>
+                       <td>{{$employee->name}}</td>
+                       <td>{{$employee->designation->department->name}}</td>
+                       <td>{{$employee->designation->name}}</td>
+                       <td>{{$employee->designation->department->working_shift->working_days}}</td>
+                       <td>{{$employee->designation->department->working_shift->holiday_days}}</td>
+                       <td>{{$employee->designation->department->working_shift->check_in}}</td>
+                       <td>{{$employee->designation->department->working_shift->check_out}}</td>
+                    </tr>
+                   @endforeach
                 </tbody>
               </table>
             </div>

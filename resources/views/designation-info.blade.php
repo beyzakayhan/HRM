@@ -23,7 +23,8 @@
                 <thead>
                   <tr>
                     <th>Görev</th>
-                    <th>Departman </th>             
+                    <th>Departman </th>  
+                    <th>Düzenle</th>           
                   </tr>
                 </thead>
                 <tbody>
@@ -32,7 +33,17 @@
                     <tr>
                       <td>{{$des->name}}</td>
                       <td>{{$des->department->name}}</td>
+                      <td style="width: 150px">
+                        <a href="{{route('designation-edit',$des->id)}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Düzenle">
+                            <span class="fa fa-pencil"></span>
+
+                        </a>
+                        <a href="{{route('designation-remove',$des->id)}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
+                            <span class="fa fa-trash"></span>
+                        </a>
+                    </td>
                     </tr>
+                  
                     @endforeach
                  
               

@@ -14,19 +14,19 @@
                 
                 </div>
                 <div class="card-body">
-                  <form  method="post" enctype="multipart/form-data" class="form-horizontal" action="{{route('department-save')}}">
+                  <form  method="post" enctype="multipart/form-data" class="form-horizontal" action="{{isset($department->id) ? route('department-update', $department->id): route('department-save')}}">
                     {{csrf_field()}}
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="name">Departman Adı</label>
                       <div class="col-md-9">
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Departman">
+                      <input type="text" id="name" name="name" class="form-control" placeholder="Departman" value="{{old('name', $department->name)}}">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="description">Açıklama</label>
                       <div class="col-md-9">
-                        <textarea id="description" name="description" rows="9" class="form-control" placeholder="Açıklama giriniz.."></textarea>
+                      <textarea id="description" name="description" rows="9" class="form-control" placeholder="Açıklama giriniz.." value="{{old('description', $department->description)}}"></textarea>
                       </div>
                     </div>
                     <div class="box-footer pull-right">

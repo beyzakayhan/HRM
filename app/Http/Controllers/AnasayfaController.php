@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Department;
 
 class AnasayfaController extends Controller
 {
-    public function index()
-    {
-        return view('anasayfa');
-    }
+        public function index()
+        {
+            return view('anasayfa');
+        }
+
+ 
 }

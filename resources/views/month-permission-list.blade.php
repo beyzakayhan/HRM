@@ -13,16 +13,24 @@
                             <h3 class="card-title">Maaş Bilgileri</h3>
                         </div>
                         <div class="card-body">
-                        <form class="" role="form" method="post" action="{{route('filter')}}">
+                        <form class="" role="form" method="post" action="{{route('month-permission-filter')}}">
                              {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="el2">Tarih</label>
-                                            <input type="month" id="date" class="form-control monthPicker" required="" name="month" value="2019-08">
+                                            <input type="date" id="date" class="form-control monthPicker" required="" name="start_date" value="2019-01-30">
                                         </div>
                                     </div>
-                                </div>
+                                 </div>
+                                 <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="el2">Tarih</label>
+                                                <input type="date" id="date" class="form-control monthPicker" required="" name="end_date" value="2019-01-31">
+                                            </div>
+                                        </div>
+                                     </div>
                                 <button type="submit" id="button" class="btn btn-success pull-right"><i class="fa fa-search"></i> Search</button>
                             </form>
                         </div>
@@ -32,41 +40,35 @@
         </div>
       <div>
         
-        <form id=form style={{$none}}>
-        <div class="card-header"  >
-            <div class="card-body">
-              <table class="table table-striped table-bordered datatable pull-right">
-                <thead>
-                  <tr>
-                
-                    <th>Ad-Soyad</th>
-                    <th>Sabit Maaş</th>
-
-                    <th>Maaş Bilgisi</th>
-
-                </thead>
-                <tbody>
-                   
-                
-                    @foreach($employees as $employee)  
-                    <tr>
-                     <td id="name"> {{$employee->name}}</td>
-                     <td id="salary"> {{$employee->salary_amount}}</td>
-                     <td style="width: 100px">
-                        @if(isset($payscales) && in_array($employee->id, $payscales)) 
-                            <input type="button"  value="Ödendi">
-                        @else
-                           <input type="button" class="salary-info" value="Odenmedi" data-name="{{$employee->id}}">
-                      @endif
-                     </td>
-                  </tr>
-                 @endforeach
-                </tbody>
-              </table>
-        </div>
-      </div>  
-    </div>
-  </div>
+        <form style={{$none}}>
+                <div class="card-header"  >
+                        <div class="card-body">
+                          <table class="table table-striped table-bordered datatable pull-right">
+                            <thead>
+                              <tr>
+                            
+                                <th>Ad-Soyad</th>
+                                <th>toplam izin</th>
+            
+                            </thead>
+                            <tbody>
+                               
+                                @if(isset($employees))
+                                @foreach($employees as $employee)  
+                                <tr>
+                                 <td > {{$employee->employee->name}}</td>
+                                 <td > {{$employee->total}}</td>
+                                 
+                              </tr>
+                             @endforeach
+                             @endif
+                            </tbody>
+                          </table>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+       
 </form>
 @endsection
 

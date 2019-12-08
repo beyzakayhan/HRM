@@ -20,6 +20,7 @@ class EmployeePayScaleController extends Controller
 
     public function save(Request $request)
     {
+       
         try {
             PayScale::create([
                 'employee_id' => $request->id,

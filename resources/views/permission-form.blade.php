@@ -31,14 +31,14 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="start_date">İzin Başlama Tarihi</label>
                       <div class="col-md-9">
-                        <input type="date" id="start_date" name="start_date"  class="form-control" placeholder="İşe Giriş Tarihi">
+                        <input type="date" id="start_date" name="start_date"  class="form-control" value="2019-01-01">
                       </div>
                     </div>
             
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="end_date">İzin Sonrası İşbaşı Tarihi</label>
                       <div class="col-md-9">
-                        <input  type="date" id="end_date" name="end_date"  class="form-control" value="00.00.0000">
+                        <input  type="date" id="end_date" name="end_date"  class="form-control" value="2019-01-01">
                       </div>
                     </div>
 

@@ -13,18 +13,18 @@
                   <strong>Yeni Personel</strong>
                 </div>
                 <div class="card-body">
-                  <form action="{{route('personal-save')}}"  method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <form action="{{isset($employee->id) ? route('employee-update', $employee->id): route('personal-save')}}"  method="post" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Ad Soyad</label>
                       <div class="col-md-9">
-                      <input type="text" id="name" name="name" class="form-control" placeholder="Ad-Soyad" >
+                      <input type="text" id="name" name="name" class="form-control" placeholder="Ad-Soyad" value="{{old('name', $employee->name)}}">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="birthday">Doğum Tarihi</label>
                       <div class="col-md-9">
-                        <input type="date" id="birthday" name="birthday" class="form-control" value="@getDate()">
+                        <input type="date" id="birthday" name="birthday" class="form-control" value="{{old('birthday', $employee->birthday)}}">
                       </div>
                     </div>
 
@@ -33,12 +33,12 @@
 
                     <div class="col-md-9">
                         <label class="radio-inline" >
-                            <input type="radio"  name="gender" value="male" > 
+                            <input type="radio"  name="gender" {{ old('gender', $employee->gender == 'male'? 'checked' : '' )}}> 
                             Erkek
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="gender" value="female" > 
+                            <input type="radio" name="gender" {{old('gender' ,$employee->gender == 'female'? 'checked' : '' )}} > 
                             Kadin
                         </label>
                     </div>
@@ -47,13 +47,13 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="email">Email</label>
                       <div class="col-md-9">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" >
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{old('email', $employee->email)}}">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="phone">Telefon</label>
                       <div class="col-md-9">
-                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Telefon">
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Telefon" value="{{old('phone', $employee->phone)}}">
                         <small class="text-muted">ex. (999) 999-9999</small>
                       </div>
                     </div>
@@ -61,8 +61,9 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="addres">Adres</label>
                       <div class="col-md-9">
+                      
                         <textarea id="addres" name="addres"  class="form-control" placeholder="Adres..">
-                            
+                            {{old('addres', $employee->addres)}}
                         </textarea>
                       </div>
                     </div>
@@ -73,7 +74,12 @@
                         <select id="department" name="department" class="form-control">
                           <option value="0">Seçiniz</option>
                           @foreach($employeeDepartments as $department)
-                              <option value="{{ $department->id}}">{{ $department->name }}</option>              
+                            @if (($department->name==$employee->designation->department->name))
+                              <option value="{{$department->id}}" selected>{{ $department->name }}</option>
+                            @else
+                                <option value="{{ $department->id}}">{{ $department->name }}</option>
+                            @endif
+                            
                            @endforeach
                         </select>
                       </div>
@@ -82,35 +88,39 @@
                       <label class="col-md-3 col-form-label" for="designation">Görev</label>
                       <div class="col-md-9">
                         <select id="designation" name="designation_id" class="form-control">
-                          
+                          @foreach ($designations as $designation)
+                            @if($designation->id == $employee->designation->id  && $designation->department_id == $employee->designation->department_id)
+                              <option value={{$designation->id }}>{{ $designation->name }}</option>
+                            @endif
+                          @endforeach
                         </select>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="join">İşe Giriş Tarihi</label>
                       <div class="col-md-9">
-                        <input type="date" id="join" name="join"  class="form-control" placeholder="İşe Giriş Tarihi" >
+                        <input type="date" id="join" name="join"  class="form-control" placeholder="İşe Giriş Tarihi" value="{{old('join', $employee->join)}}">
                       </div>
                     </div>
                   
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="quit">İşten Ayrılma Tarihi</label>
                       <div class="col-md-9">
-                        <input  type="date" id="quit" name="quit"  class="form-control" placeholder="İşten Ayrılma Tarihi" >
+                        <input  type="date" id="quit" name="quit"  class="form-control" placeholder="İşten Ayrılma Tarihi" value="{{old('quit', $employee->quit)}}">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="salary">Maaş</label>
                       <div class="col-md-9">
-                        <input  type="salary" id="salary" name="salary"  class="form-control" placeholder="">
+                        <input  type="salary" id="salary" name="salary"  class="form-control" placeholder="" value="{{old('salary', $employee->salary_amount)}}">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="photo">Resim</label>
                       <div class="col-md-9">
-                        <input  type="file" id="photo" name="photo"  class="form-control" accept="image/*" }>
-                       
+                        <input  type="file" id="photo" name="photo"  class="form-control" accept="image/*" >
+                        <input value="{{ isset($employee->photo)?  ($employee->photo)  : ' '}}" type="hidden" name="image">
                      </div>
                   </div>
               </div>

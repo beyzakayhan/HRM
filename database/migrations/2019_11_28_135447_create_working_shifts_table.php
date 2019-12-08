@@ -8,8 +8,6 @@ class CreateWorkingShiftsTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
@@ -18,8 +16,8 @@ class CreateWorkingShiftsTable extends Migration
             $table->unsignedBigInteger('department_id');
             $table->string('working_days');
             $table->string('holiday_days');
-            $table->string('check-in_time');
-            $table->string('check-out_time');
+            $table->string('check_in');
+            $table->string('check_out');
 
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
@@ -28,8 +26,6 @@ class CreateWorkingShiftsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
