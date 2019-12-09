@@ -15,6 +15,7 @@
                 <div class="card-body">
                   <form action="{{route('personal-save')}}"  method="post" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
+                    @include('Layouts.partials.errors')
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Ad Soyad</label>
                       <div class="col-md-9">
@@ -24,7 +25,7 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="birthday">Doğum Tarihi</label>
                       <div class="col-md-9">
-                        <input type="date" id="birthday" name="birthday" class="form-control" value="@getDate()">
+                        <input type="date" id="birthday" name="birthday" class="form-control" value="2018-07-22">
                       </div>
                     </div>
 

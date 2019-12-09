@@ -16,6 +16,7 @@
                 <div class="card-body">
                   <form  method="post" enctype="multipart/form-data" class="form-horizontal" action="{{isset($department->id) ? route('department-update', $department->id): route('department-save')}}">
                     {{csrf_field()}}
+                    @include('Layouts.partials.errors')
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="name">Departman Adı</label>
                       <div class="col-md-9">

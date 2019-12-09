@@ -16,6 +16,7 @@
                 <div class="card-body">
                 <form action="{{isset($designation->id) ? route('designation-update', $designation->id): route('designation-save')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                     {{ @csrf_field() }}
+                    @include('Layouts.partials.errors')
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="name">Branş ve Görevi</label>
                       <div class="col-md-9">
@@ -28,15 +29,15 @@
                       <div class="col-md-9">
                         <select id="department_id" name="department_id" class="form-control">
                           <option value="0">Seçiniz</option>
-                          @if($designation->department!=null)
+                          
                           @foreach($employeeDepartments as $department)
-                          @if (($department->name==$designation->department->name))
+                          @if (isset($designaiton->department) && $department->name==$designation->department->name))
                           <option value="{{$department->id}}" selected>{{ $department->name }}</option>
                            @else
                             <option value="{{ $department->id}}">{{ $department->name }}</option>
                            @endif
                           @endforeach
-                          @endif
+                          
                         </select>
                       </div>
                     </div>

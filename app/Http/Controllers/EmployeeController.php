@@ -6,6 +6,8 @@ use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class EmployeeController extends Controller
 {
@@ -26,6 +28,23 @@ class EmployeeController extends Controller
 
     public function save(Request $request)
     {
+        $this->validate(request(),[
+            'designation_id' => [
+                'required',
+                'integer',
+                Rule::notIn(['0', '0']),
+            ],
+            'name' => 'required|string|unique:employees',
+            'phone' => 'required|max:20',
+            'email' => 'required|email|unique:employees|max:50',
+            'birthday' => 'required|date',
+            'gender' => 'required',
+            'marital_status' => 'required',
+            'present_addres' => 'required',
+            'permanent_addres' => 'required',
+            'avatar' => 'mimes:jpeg,jpg,png|max:300',
+            'join' => 'required',
+        ]);
         if ($request->hasFile('photo')) {
             if ($request->file('photo')->isValid()) {
                 $avatarName = $request->file('photo');

@@ -9,13 +9,5 @@
   <link href="/asset/vendors/css/daterangepicker.min.css" rel="stylesheet">
   <link href="/asset/vendors/css/gauge.min.css" rel="stylesheet">
   <link href="/asset/vendors/css/toastr.min.css" rel="stylesheet">
-<style>
-  .invisible {
-    visibility: hidden;
-  }
-  .visible {
-    visibility: visible;
-  }
-</style>
   
   @yield('style')

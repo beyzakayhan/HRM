@@ -24,7 +24,9 @@ class DepartmentController extends Controller
     
     public function save(Request $request)
     {
-    
+            $this->validate(request(),[
+                'name'=>'required'
+            ]);
             Department::create([
                 'name' => $request->name,
                 'description' => $request->description,
@@ -42,6 +44,10 @@ class DepartmentController extends Controller
         }
     }
     public function update($id=0){
+        
+        $this->validate(request(),[
+            'name'=>'required'
+        ]);
         $data = request()->all();
         
         if ($id > 0) {

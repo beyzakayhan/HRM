@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\EmployeeAttendance;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,17 @@ class EmployeeAttendanceController extends Controller
     }
     public function save(Request $request)
     {
+        $this->validate(request(),[
+            'employee_id' => [
+                'required',
+                'integer',
+                Rule::notIn(['0', '0']),
+            ],
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'day'=>'required',
+            'resaon'=>'required'
+        ]);
     
     EmployeeAttendance::create([
 
@@ -56,5 +68,42 @@ class EmployeeAttendanceController extends Controller
        
         $none=null;
         return view('month-permission-list',compact('employees', 'none'));
+    }
+
+    public function edit($id=0)
+    {
+        
+        if ($id > 0) {
+            $attendance =EmployeeAttendance::where('id', $id)->firstOrFail();
+            return view('permission-edit', compact('attendance'));
+        }
+    }
+    public function update($id=0){
+        
+        $this->validate(request(),[
+            'employee_id' => [
+                'required',
+                'integer',
+                Rule::notIn(['0', '0']),
+            ],
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'day'=>'required',
+            'resaon'=>'required'
+        ]);
+        $data = request()->all();
+        
+        if ($id > 0) {
+            $attendance = EmployeeAttendance::where('id', $id)->firstOrFail();
+            $attendance->update($data);
+        
+
+        }
+        return redirect('permission-info');
+    }
+
+    public function remove($id=0){
+        EmployeeAttendance::destroy($id);
+        return redirect('permission-info');
     }
 }

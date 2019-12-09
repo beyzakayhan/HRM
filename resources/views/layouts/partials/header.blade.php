@@ -30,12 +30,23 @@
           <a class="dropdown-item" href="#"><i class="fa fa-file"></i> Projects<span class="badge badge-primary">42</span></a>
           <div class="divider"></div>
           <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Lock Account</a>
-          <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+          
+        <a class="dropdown-item" href="{{('logout')}}"><i class="fa fa-lock"></i> Logout</a>
         </div>
       </li>
-      <button class="navbar-toggler aside-menu-toggler" type="button">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      
+              <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                      onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+              <span class="fa fa-power-off"></span>  Çıkış 
+               </a>
+              </div>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+            </li> 
+     
 
     </ul>
   </header>

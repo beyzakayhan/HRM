@@ -35,7 +35,7 @@
                       <div class="col-md-9">
                           <select name="working_days[]" id="select2-2" class="form-control select2-multiple" multiple="">
                             <option>Pazartesi</option>
-                            <option selected="">Salı</option>
+                            <option >Salı</option>
                             <option>Çarşamba</option>
                             <option>Perşembe</option>
                             <option>Cuma</option>
@@ -52,7 +52,7 @@
                       <div class="col-md-9">
                           <select name="holiday_days[]" id="select2-3" class="form-control select2-multiple" multiple>
                           <option>Pazartesi</option>
-                            <option selected="">Salı</option>
+                            <option >Salı</option>
                             <option>Çarşamba</option>
                             <option>Perşembe</option>
                             <option>Cuma</option>

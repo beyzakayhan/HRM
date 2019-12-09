@@ -11,8 +11,8 @@
                 <div  class="card-body">
                   <a href= "{{route('department-add')}}"><button type="button" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp; Ekle</button></a>
                 </div>
-              </div>
-          <div class="card">
+              </div> 
+         <div class="card">
             <div class="card-header">
               <i class="fa fa-edit"></i> Personel Bilgileri
               <div class="card-actions">

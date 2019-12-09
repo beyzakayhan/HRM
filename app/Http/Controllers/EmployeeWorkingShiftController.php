@@ -18,6 +18,7 @@ class EmployeeWorkingShiftController extends Controller
 
     public function create()
     {
+        
         $employeeDepartment = Department::all();
 
         return view('overtime-info-add', compact('employeeDepartment'));
@@ -43,7 +44,7 @@ class EmployeeWorkingShiftController extends Controller
             'check_out' => $request->check_out,
         ]);
 
-        return redirect('personal-overtime-info');
+        return redirect('department-overtime-info');
     }
 
     public function departmentWorkingShift()

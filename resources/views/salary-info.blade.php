@@ -19,7 +19,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="el2">Tarih</label>
-                                            <input type="month" id="date" class="form-control monthPicker" required="" name="month" value="2019-08">
+                                            <input type="month" id="date" class="form-control monthPicker" required="" name="month" value="{{old('name','2019-08')}}" >
                                         </div>
                                     </div>
                                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Designation;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 
 
@@ -25,6 +26,14 @@ class DesignationController extends Controller
 
     public function save(Request $request)
     {
+        $this->validate(request(),[
+            'department_id' => [
+                'required',
+                'integer',
+                Rule::notIn(['0', '0']),
+            ],
+            'name'=>'required|unique:designations'
+        ]);
         Designation::create([
            'department_id'=>$request->department_id,
             'name'=>$request->name,
@@ -50,6 +59,14 @@ class DesignationController extends Controller
     }
 
     public function update($id=0){
+        $this->validate(request(),[
+            'department_id' => [
+                'required',
+                'integer',
+                Rule::notIn(['0', '0']),
+            ],
+            'name'=>'required|unique:designations'
+        ]);
         $data = request()->all();
         
         if ($id > 0) {

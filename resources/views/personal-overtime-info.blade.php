@@ -23,8 +23,9 @@
                   </tr>
                 </thead>
                 <tbody>
-               
+                        
                    @foreach ($employees as $employee)
+                   @if(isset($employee->designation->department->working_shift))
                     <tr>
                        <td>{{$employee->name}}</td>
                        <td>{{$employee->designation->department->name}}</td>
@@ -34,6 +35,7 @@
                        <td>{{$employee->designation->department->working_shift->check_in}}</td>
                        <td>{{$employee->designation->department->working_shift->check_out}}</td>
                     </tr>
+                    @endif
                    @endforeach
                 </tbody>
               </table>

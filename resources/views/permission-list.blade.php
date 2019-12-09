@@ -20,6 +20,7 @@
                     <th>İzin Bitiş Tarihi</th>
                     <th>İzinli Olacağı Gün Sayısı</th>
                     <th>İzin Nedeni</th>
+                    <th>Düzenle</th>
                   
                   </tr>
                 </thead>
@@ -33,6 +34,14 @@
                    <td>{{$attendance->end_date}}</td>
                    <td>{{$attendance->day}}</td>
                    <td>{{$attendance->resaon}}</td>
+                   <td style="width: 150px">
+                      <a href="{{route('permission-edit', $attendance->id)}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Düzenle">
+                          <span class="fa fa-pencil"></span>
+                      </a>
+                      <a href="{{route('permission-remove', $attendance->id)}}" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
+                          <span class="fa fa-trash"></span>
+                      </a>
+                  </td>
                    @endforeach
                   </tr>
               </table>
