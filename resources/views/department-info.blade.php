@@ -65,4 +65,7 @@
 
   <!-- Custom scripts required by this view -->
   <script src="/asset/js/views/datatables.js"></script>
+
+
+  
 @endsection

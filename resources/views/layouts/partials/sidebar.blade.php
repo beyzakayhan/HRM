@@ -21,11 +21,15 @@
                   </li>
             </ul>
           </li>
+
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="{{route('department-info')}}"><i class="icon-puzzle"></i> Departmanlar</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Departmanlar</a>
+         
          
             <ul class="nav-dropdown-items">
-              
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('department-info')}}"><i class="icon-cursor"></i>Tüm Departmanlar</a>
+                  </li>
               @foreach($employeeDepartments as $employeeDepartment)
               <li class="nav-item">
               
@@ -37,7 +41,6 @@
           </li>
         <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Departman İşlemleri</a>
-         
         <ul class="nav-dropdown-items">
           <li class="nav-item">
             <a class="nav-link" href="{{route('overtime-info-add')}}"><i class="icon-puzzle"></i>Mesai Bilgisi Ekle</a>
@@ -53,9 +56,14 @@
         </li>
  
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="{{route('designation-info')}}"><i class="icon-cursor"></i> Branşlar</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-cursor"></i> Branşlar</a>
          
         <ul class="nav-dropdown-items">
+          
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('designation-info')}}"><i class="icon-cursor"></i> Tüm Branşlar</a>
+              </li>
+
           <li class="nav-item">
               <a class="nav-link" href="{{route('designation-add')}}"><i class="icon-cursor"></i>Branş Ekle</a>
             </li>

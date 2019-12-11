@@ -18,9 +18,12 @@
                   <strong>{{$announcement->date}}</strong>
             </div>
            
-            <div class="card-body">
-                <h5>{{$announcement->name}}</h5>
+            <div class="card-body ">
+                <h5>{{$announcement->name}} <a href="{{route('announcement-remove', $announcement->id)}}" class="btn btn-xs btn-danger pull-right" data-toggle="tooltip" data-placement="top" title="Sil" onclick="return confirm('Emin misiniz?')">
+                        <span class="fa fa-trash"></span>
+                </a></h5>
             </div>
+            
         @endforeach
             
     </div>

@@ -62,7 +62,7 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label" for="addres">Adres</label>
                       <div class="col-md-9">
-                        <textarea id="addres" name="addres"  class="form-control" placeholder="Adres..">
+                        <textarea id="addres" rows="3" name="addres"  class="form-control" placeholder="Adres..">
                             
                         </textarea>
                       </div>

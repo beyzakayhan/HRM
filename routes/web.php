@@ -1,6 +1,6 @@
 <?php
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/anasayfa', 'AnasayfaController@index')->name('anasayfa');
+    Route::get('/', 'AnasayfaController@index')->name('anasayfa');
 
     // Route::get('/salary-info-add', 'PersonalInfoController@salaryAdd')->name('salary-info-add');
     // Route::get('/salary-info', 'PersonalInfoController@salaryInfo')->name('salary-info');
@@ -54,10 +54,17 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('announcement', 'AnnouncementController@index')->name('announcement');
     Route::get('announcement-add', 'AnnouncementController@create')->name('announcement-add');
     Route::post('announcement-save', 'AnnouncementController@save')->name('announcement-save');
-    
-   
+    Route::get('announcement-remove/{id}', 'AnnouncementController@remove')->name('announcement-remove');
     
 });
+
 Auth::routes();
     
+
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+
+Route::group(['middleware' => 'throttle:1,1'], function(){
+    Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+});
 Route::get('/home', 'HomeController@index')->name('home');

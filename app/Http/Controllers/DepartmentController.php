@@ -25,7 +25,7 @@ class DepartmentController extends Controller
     public function save(Request $request)
     {
             $this->validate(request(),[
-                'name'=>'required'
+                'name'=>'required|unique:departments'
             ]);
             Department::create([
                 'name' => $request->name,
@@ -44,7 +44,7 @@ class DepartmentController extends Controller
         }
     }
     public function update($id=0){
-        
+
         $this->validate(request(),[
             'name'=>'required'
         ]);

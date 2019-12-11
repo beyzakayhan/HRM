@@ -1,6 +1,9 @@
 @extends('layouts.master')
 @section('title','Maaş Bilgileri')
 
+@section('style')
+  <link href="/asset/css/error.css" rel="stylesheet">
+@endsection
 @section('content')
 
 <div class="animated fadeIn">
@@ -15,11 +18,15 @@
                         <div class="card-body">
                         <form class="" role="form" method="post" action="{{route('month-permission-filter')}}">
                              {{ csrf_field() }}
+                            
+                         @if(isset($error))
+                          <div class="error">{{$error}}</div>
+                          @endif
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="el2">Tarih</label>
-                                            <input type="date" id="date" class="form-control monthPicker" required="" name="start_date" value="2019-01-30">
+                                            <input type="date" id="date" class="form-control monthPicker" required="" name="start_date" value="{{ old('start_date',isset($start_date) ? $start_date: "2019-01-01") }}"> 
                                         </div>
                                     </div>
                                  </div>
@@ -27,7 +34,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label for="el2">Tarih</label>
-                                                <input type="date" id="date" class="form-control monthPicker" required="" name="end_date" value="2019-01-31">
+                                                <input type="date" id="date" class="form-control monthPicker" required="" name="end_date" value="{{old('end_date',isset($end_date) ? $end_date : "2019-01-02")}}">
                                             </div>
                                         </div>
                                      </div>

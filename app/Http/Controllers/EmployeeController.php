@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddEmployeeRequest;
 use App\Models\Employee;
 use App\Models\Department;
 use App\Models\Designation;
@@ -26,25 +27,9 @@ class EmployeeController extends Controller
         return view('personal-info-add', compact('employeeDepartments','employee'));
     }
 
-    public function save(Request $request)
+    public function save(AddEmployeeRequest $request)
     {
-        $this->validate(request(),[
-            'designation_id' => [
-                'required',
-                'integer',
-                Rule::notIn(['0', '0']),
-            ],
-            'name' => 'required|string|unique:employees',
-            'phone' => 'required|max:20',
-            'email' => 'required|email|unique:employees|max:50',
-            'birthday' => 'required|date',
-            'gender' => 'required',
-            'marital_status' => 'required',
-            'present_addres' => 'required',
-            'permanent_addres' => 'required',
-            'avatar' => 'mimes:jpeg,jpg,png|max:300',
-            'join' => 'required',
-        ]);
+       
         if ($request->hasFile('photo')) {
             if ($request->file('photo')->isValid()) {
                 $avatarName = $request->file('photo');
@@ -55,20 +40,26 @@ class EmployeeController extends Controller
         } else {
             $avatar = null;
         }
+        $validated = $request->validated();
+        if ($validated) {
+            
+            Employee::create([
+                'designation_id' => $request->designation_id,
+                'name' => $request->name,
+                'birthday' => $request->birthday,
+                'gender' => $request->gender,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'addres' => $request->addres,
+                'join' => $request->join,
+                'quit' => $request->quit,
+                'salary' => $request->salary,
+                'photo' => $avatar,
+            ]);
+        }
 
-        Employee::create([
-            'designation_id' => $request->designation_id,
-            'name' => $request->name,
-            'birthday' => $request->birthday,
-            'gender' => $request->gender,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'addres' => $request->addres,
-            'join' => $request->join,
-            'quit' => $request->quit,
-            'salary_amount' => $request->salary,
-            'photo' => $avatar,
-        ]);
+
+        // Employee::create(request()->all());
 
        return redirect('personal-info');
     }

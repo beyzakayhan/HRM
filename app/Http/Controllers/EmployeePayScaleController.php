@@ -41,6 +41,7 @@ class EmployeePayScaleController extends Controller
             array_push($payscales, $payscale->employee_id);
         }
        $none=null;
-        return view('salary-info', compact('payscales', 'employees','none'));
+       $month= $request->month;
+        return view('salary-info', compact('payscales', 'employees','none','month'));
     }
 }

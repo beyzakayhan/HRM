@@ -24,7 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->text('addres');
             $table->date('join');
             $table->date('quit')->nullable();
-            $table->decimal('salary_amount',8,2);
+            $table->decimal('salary',8,2);
             $table->string('photo',50);
 
             $table->foreign('designation_id')->references('id')->on('designations')->onDelete('cascade');

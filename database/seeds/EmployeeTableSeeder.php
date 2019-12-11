@@ -16,19 +16,19 @@ class EmployeeTableSeeder extends Seeder
     public function run(Faker\Generator $faker)
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        for($i=0;$i<10; $i++){
+        for($i=0;$i<5; $i++){
             
             $department=Department::create([
                 'name'=>$faker->colorName,
                 'description'=>$faker->text,
             ]);
     
-         for ($j = 0; $j < 5; $j++) {
+         for ($j = 0; $j < 2; $j++) {
              $designation=$department->designations()->create([
                  'name' => $faker->safeColorName,
              ]);
             
-             for($t = 0; $t <5; $t++){
+             for($t = 0; $t <2; $t++){
                 
                  $employee=$designation->employee()->create([
                     'name'=>$faker->name,
@@ -39,11 +39,11 @@ class EmployeeTableSeeder extends Seeder
                     'addres' => $faker->address,
                     'join' => $faker->dateTimeBetween($startDate = '-5 years', $endDate = 'now'),
                     'quit' => null,
-                    'salary_amount' => $faker->numberBetween(2500,5000),
+                    'salary' => $faker->numberBetween(2500,5000),
                     'photo' =>"avatar.jpeg"
                  ]);
                 
-             }
+             } 
              
          }
 

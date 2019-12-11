@@ -6,6 +6,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\EmployeeAttendance;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class EmployeeAttendanceController extends Controller
@@ -58,16 +59,23 @@ class EmployeeAttendanceController extends Controller
         $employees=[];
         $start_date=$request->start_date;
         $end_date=$request->end_date;
-        $attendances=EmployeeAttendance::where([
-            ['start_date', '>=', $start_date ],
-            ['end_date','<=',$end_date]
-        ])->select('employee_id',DB::raw('sum(day) as total'))->groupBy('employee_id')->get();
-        foreach($attendances as $attendance){
-            array_push($employees,$attendance);
+        if($end_date>$start_date && $end_date>date("d.m.Y")){
+            $attendances=EmployeeAttendance::where([
+                ['start_date', '>=', $start_date ],
+                ['end_date','<=',$end_date]
+            ])->select('employee_id',DB::raw('sum(day) as total'))->groupBy('employee_id')->get();
+            foreach($attendances as $attendance){
+                array_push($employees,$attendance);
+            }
+           
+            $none=null;
+            return view('month-permission-list',compact('employees', 'none','start_date','end_date'));
         }
-       
-        $none=null;
-        return view('month-permission-list',compact('employees', 'none'));
+        else{
+            $none="display:none;";
+            $error="Geçerli bir tarih giriniz";
+            return view('month-permission-list',compact('error','none','start_date','end_date'));
+        }
     }
 
     public function edit($id=0)
